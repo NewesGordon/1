@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* CSS Document */
+html{width: 100%; height: 100%;}
+body,div,p,ul,li,h1,a{font-family: Verdana, "黑体" ; margin:0; padding:0;}
+h1{font-size:100%;}
+.clear{clear: both;}
+img{border:none;}
+a:hover{text-decoration: none;}
+#logo{display:block; float:left; background:#993333;}
+#logo img{display:block; width: 100%; height: 100%;}
+#myNav{border: none; float:left;}
+#myNav #myHeart img{width: 100%; height: 100%; padding: 5px;}
+#myNav #myBrand{color: #000;}
+#myNav #myBrand:hover{color:#fff;}
+#myNav #myDropdown-menu{background: rgb(30,30,30);}
+#myNav #myDropdown-menu li{width: 160px;}
+#myNav #myDropdown-menu a{line-height: 45px;}
+#myNav li a{display:block; height: 54px; color: #E0E0E0; font-size: 16px;}
+#myNav li a:hover{color: #fff; background-color: #993333;}
+#content{padding: 10px; margin-top: 10px; margin-bottom: 20px;}
+#leftArticle{float: left;}
+#leftArticle article{position:relative; padding: 10px; margin: 20px auto; border-radius:5px; box-shadow: 0px 2px 2px grey;background-color: #fff}
+#leftArticle article:hover{background-color: rgb(245,245,245);}
+#leftArticle img{width: 100%; height: 100%;}
+#leftArticle #myOrder{background: none;}
+#leftArticle #myOrder .active{color: #FF3300;}
+#leftArticle #myCarousel{margin-top: 20px; box-shadow: 0px 1px 1px;}
+#leftArticle #myCarousel-inner{max-height: 450px;}
+#leftArticle #myCarousel .left{background: none; text-align: center;}
+#leftArticle #myCarousel .right{background: none; text-align: center;}
+#leftArticle .myAlert{margin-top: 20px;}
+#rightInfo{float: right;}
+#rightInfo #mySearch{margin: 20px auto;}
+#rightInfo .rightSubInfo{width: 370px; min-height: 200px; margin: 20px auto; padding: 5px; border: 1px solid    rgb(220,220,220); border-radius:5px; box-shadow: 0px 2px 2px grey; background-color: #Fff; list-style:none;}
+#rightInfo .rightSubInfo #myHead{float: left; width: 150px; height: 150px; margin-left: 3px;}
+#rightInfo .rightSubInfo #myIntro{float: left; width: 180px; height: 150px; margin-left: 10px;}
+#rightInfo .infoHeader{display: block; width: 359px; height: 28px; color: #fff; text-indent: 5px; font-size: 18px; border-radius: 3px; box-shadow: 0px 2px 2px grey; background-color: #2e8b57; margin-bottom: 10px; padding: 2px;}
+#rightInfo div li .articleType1{display: block; border-radius: 3px; box-shadow: 2px 2px 2px grey; font-size: 16px; transition: 0.5s; text-indent: 10px; color: #fff5ee; width: 150px; height: 25px; margin-top: 5px; background-color: #cd5c5c; text-decoration:none;}
+#rightInfo div li .articleType1:hover{width: 180px;}
+#rightInfo div .list-group .list-group-item:hover{background-color: #99CC99;}
+#selfFooter{height: 60px; margin: 35px auto; padding-top: 20px; text-align: center; box-shadow: 0px 2px 2px grey; background-color: #dcdcdc;}
+#selfFooter a{margin:auto; text-decoration:none;}
+.font01{line-height: 25px; text-align: center; text-decoration: none; font-size: 15px; text-indent: 10px;}
+.articleTitle{display: block; font-size: 22px; color: #000; text-indent: 1em; text-}
+.articleTitle:hover{color: #227700;}
+.articleContent{margin: 5px auto; font-family: "华文细黑"; text-indent: 20px; font-size: 18px;}
+.articleType{display: block; line-height: 25px; text-align: center; float: left; font-size: 10px; text-decoration:none; border-radius: 5px 5px 5px 5px; background-color: #afeeee; transition: 0.5s;}
+.articleType:hover{transform:matrix(0.866,0.5,-0.5,0.866,0,0);}
+#leftArticle .readMore{display: block; width: 100px; height: 30px; background-color: #009966;  border-radius: 2px; transition: 0.5s; margin: 0px auto; text-decoration: none; color: #fff; font-size: 15px; line-height: 28px; text-align: center;}
+#leftArticle .myTag:hover{background-color: rgb(80,80,80);}
+#fullArticle{padding: 15px; background-color: #fff; box-shadow: 0px 5px 5px grey; border:5px solid rgb(224，224，224); border-radius: 5px; margin-top: 20px;}
+#fullArticle #articleAuthorInfo{border-radius: 2px; height: 100px; margin: 10px auto; padding: 20px; background-color: #CCCCFF;}
+#fullArticle #articleAuthorInfo p{color: #009900;}
+#fullArticle #articleAuthorInfo a{color: #009900;}
+#fullArticle #articleAuthorInfo strong{color: #009900;}
+#fullArticle button:focus{outline: none;}
+#fullArticle img{width: 100%; height: 100%;}
+#fullArticle #dashang{width:100px; height: 100px; margin: 0 auto; margin-top: 15px;}
+.zhifubao{width: 503px; height: 503px;}
+#toTop{box-shadow: 0px 1px 1px grey; border-radius: 5px; background: #CC6633; color: rgb(255, 255, 255); text-align: center; padding: 10px 13px 7px; position: fixed; bottom: 20px; right: 20px; cursor: pointer; font-family: verdana; font-size: 22px;}
+#toTop:hover{box-shadow: 0px 3px 3px grey;}
+@keyframes myfirst
+{
+    0%   {padding: 10px;}
+    100% {padding: 5px;}
+}
+
+@-webkit-keyframes myfirst /* Safari 与 Chrome */
+{
+    0%   {padding: 10px;}
+    100% {padding: 5px;}
+}
+
+#myNav #myHeart{
+                animation: myfirst 0.6s;
+                animation-iteration-count: infinite;
+                animation-direction:alternate;
+                 /* Safari 与 Chrome */
+                -webkit-animation: myfirst 0.6s;
+                -webkit-animation-iteration-count; infinite;
+                -webkit-animation-direction:alternate;
+                float:left;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                top: 8px;
+                right: 100px;;
+                }
+#dates{width: 40px; height: 40px; position: absolute; top: 12px; right: 55px;float: left; display; block; color: #993333;
+        font-family: "Showcard Gothic";
+        font-size: 20px;;
+        }
+#liuyanqiang{margin-top: 20px; padding-right: 30px; background-color: rgb(230,230,230); box-shadow: 0px 2px 2px grey; border-radius: 2px;}
+#liuyanqiangbiaoti{font-size: 30px; font-family: "华文彩云";}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}#继承base.html
+{% load custom_markdown %}
+{% block bodycontent %}
+                <strong id="dates">{{ dates }}</strong>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="clear"></div>
+<div id="content" class="container">
+    <div class="row">
+        <div id="leftArticle" class="col-xs-12 col-md-8 col-lg-8">
+            <div id="fullArticle">
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="{% url 'article_list' blog_content.blog_type '1'%}">{{ blog_content.blog_type }}</a></li>
+                    <li class="pull-right"><span class="glyphicon glyphicon-calendar"></span> {{ blog_content.blog_timestamp|date:"Y-m-d" }}</li>
+                    <li class="pull-right"><span class="glyphicon glyphicon-eye-open"></span> {{ blog_content.blog_clicknum }}</li>
+                </ol>
+                <h2 class="text-center">{{ blog_content.blog_title }}</h2>
+                    {% autoescape off%}
+                        {% if blog_content.blog_ismarkdown == '1' %}
+                            {{ blog_content.blog_body | custom_markdown }}
+                        {% elif blog_content.blog_ismarkdown == '0' %}
+                            {{ blog_content.blog_body }}
+                        {% else %}
+                            {{ blog_content.blog_body }}
+                        {% endif %}
+                    {% endautoescape %}
+                <div id="dashang" class="hidden-xs">
+                    <a href=""></a>
+                    <button class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                        <img src="/static/myblog/images/shang.png">
+                    </button>
+                </div>
+                <div id="articleAuthorInfo">
+                    <p>作者：我寝大唱神 | Chance Gal</p>
+                    <p>原文地址：<a href="{% url 'article' blog_content.id %}">{% url 'article' blog_content.id %}</a></p>
+                    <strong>转载请注明出处</strong>
+                </div>
+                <div class="ds-share" data-thread-key="{{ blog_content.id }}" data-title="{{ blog_content.title }}" data-images="/" data-content="{{ blog_content.abstract }}" data-url="{{ blog_content.get_absolute_url }}">
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+                        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+                        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+                        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="{{ blog_content.id }}" data-title="{{ blog_content.title }}" data-url="{{ blog_content.get_absolute_url }}"></div>
+            <!-- 多说评论框 end -->
+        </div>
+        <div id="rightInfo" class="col-xs-0 col-md-4 col-lg-4 hidden-xs">
+            {% include 'rightInfo.html' %}
+        </div>
+
+    </div>
+    <!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title text-center" id="myModalLabel">
+                    ~~~~~点赞是美意 打赏是鼓励~~~~~
+                </h4>
+            </div>
+            <div class="modal-body">
+                <img class="zhifubao" src="/static/myblog/images/zhifubao.png">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+{% endblock bodycontent %}

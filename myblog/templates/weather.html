@@ -1,0 +1,111 @@
+{% extends "base.html" %}#继承base.html
+{% block bodycontent %}
+                <strong id="dates">{{ dates }}</strong>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="clear"></div>
+<div id="content" class="container">
+    <div class="row">
+        <div id="leftArticle" class="col-xs-12 col-md-8 col-lg-8">
+            {% if searchStatus == 'noResult' %}
+                <div class="myAlert">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            很抱歉，目前只能查询中国的<strong>城市(或县、县级市)</strong>。
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'pinyin' %}
+                <div class="myAlert">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            对不起，请您输入城市名字的汉字来查询。
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'error' %}
+                <div class="myAlert">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            <strong>对不起！</strong>    您输入的是空格，请您输入有效城市的名字后再进行查询。
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'empty' %}
+                <div class="myAlert">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            <strong>对不起！</strong>    您还没有输入任何城市的名字，请您输入后再进行查询。
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'success' %}
+                <div class="myAlert">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">当前城市：<strong>{{ city }}</strong></h3>
+                        </div>
+                        <ul class="list-group">
+                        {% for key, value in weather.iteritems %}
+                            <li class="list-group-item">{{ key }}{{ value }}</li>
+                        {% endfor %}
+                        </ul>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">空气质量情况</h3>
+                        </div>
+                        <ul class="list-group">
+                        {% for key, value in environment.iteritems %}
+                            <li class="list-group-item">{{ key }}{{ value }}</li>
+                        {% endfor %}
+                        </ul>
+                        <div class="panel-footer">
+                            <strong>数据来源：</strong>免费天气API  http://wthrcdn.etouch.cn/WeatherApi?city= 可能不是非常准确
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'dijishi' %}
+                <div class="myAlert">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">当前城市：<strong>{{ city }}</strong></h3>
+                        </div>
+                        <ul class="list-group">
+                        {% for key, value in weather.iteritems %}
+                            <li class="list-group-item">{{ key }}{{ value }}</li>
+                        {% endfor %}
+                        </ul>
+                        <div class="panel-heading">
+                                <h3 class="panel-title">很抱歉，部分城市、县、县级市的空气质量情况暂时无法查询</h3>
+                        </div>
+                        <div class="panel-footer">
+                                <strong>数据来源：</strong>免费天气API  http://wthrcdn.etouch.cn/WeatherApi?city= 可能不是非常准确
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div id="rightInfo" class="col-xs-0 col-md-4 col-lg-4 hidden-xs">
+            {% include 'rightInfo.html' %}
+        </div>
+
+    </div>
+{% endblock bodycontent %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}#继承base.html
+{% block bodycontent %}
+                <strong id="dates">{{ dates }}</strong>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="clear"></div>
+<div id="content" class="container">
+    <div class="row">
+        <div id="leftArticle" class="col-xs-12 col-md-8 col-lg-8">
+            {% if searchStatus == 'noResult' %}
+                <div class="myAlert">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            <strong>真遗憾,并没有关于<font color="red"><b>"{{ keyword }}"</b></font>的内容,要不换一个关键词试试</strong>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'error' %}
+                <div class="myAlert">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            <strong>对不起！</strong>    您输入的是空格，请您输入有效关键词后再进行搜索。
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'empty' %}
+                <div class="myAlert">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            <strong>对不起！</strong>    您还没有输入任何关键词，请您输入有效关键词后再进行搜索。
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if searchStatus == 'success' %}
+                <div class="myAlert">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提示</h3>
+                        </div>
+                        <div class="panel-body">
+                            <strong>关于<font color="red"><b>"{{ keyword }}"</b></font>的文章一共有<font color="red"><b>"{{ resultAmount }}"</b></font>篇</strong>
+                        </div>
+                    </div>
+                </div>
+                {% for x in searchResult %}
+                    <article>
+                      <div><a href="{% url 'article_list' x.blog_type '1' %}" class="articleType">{{ x.blog_type }}</a><a class="articleTitle" href="{% url 'article' x.id %}" target="_blank">{{ x.blog_title }}</a></div>
+                      <div class="articleInfo">
+                          <span class="glyphicon glyphicon-calendar"></span><a class="font01">{{ x.blog_timestamp }}</a>
+                          <span class="glyphicon glyphicon-eye-open"></span><a class="font01">浏览({{ x.blog_clicknum }})</a>
+                      </div>
+                      <div><p class="articleContent">{{ x.blog_abstract }}</p></div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-sm-10">
+                            {% for tag in x.get_tags %}
+                                <a href="{% url 'search_by_tag' tag %}"><span class="label label-primary myTag">#{{ tag }}</span></a>
+                            {% endfor %}
+                        </div>
+                        <div class="col-sm-2">
+                            <a type="button" class="readMore hidden-xs" href="{% url 'article' x.id %}" target="_blank">阅读全文</a>
+                        </div>
+                      </div>
+                    </article>
+                {% endfor %}
+            {% endif %}
+
+            {% if errmsg == 'OK' %}
+                <ul class="pagination">
+                    {% if page == 1 %}
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                    {% else %}
+                        <li><a href="{% url 'article_list' list_type pre_page %}">&laquo;</a></li>
+                    {% endif %}
+                    {% for p in pages %}
+                        {% if page == p %}
+                            <li class="active" class="disabled"><a href="{% url 'article_list' list_type p %}">{{ p }}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'article_list' list_type p %}">{{ p }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page == end %}
+                        <li class="disabled"><a href="#">&raquo;</a></li>
+                    {% else %}
+                        <li><a href="{% url 'article_list' list_type next_page %}">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+        <div id="rightInfo" class="col-xs-0 col-md-4 col-lg-4 hidden-xs">
+            {% include 'rightInfo.html' %}
+        </div>
+
+    </div>
+{% endblock bodycontent %}

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+<!-- 引入jQuery -->
+<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/static/myblog/js/jquery-3.1.1.min.js"></script>
+<!-- 引入 Bootstrap -->
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/myblog/css/colorful.css" />
+<link rel="stylesheet" type="text/css" href="/static/myblog/css/style.css" />
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+    <title>Galog | 积跬步而致千里</title>
+    <link rel="shortcut icon" href="/static/myblog/images/favicon.ico" type="image/x-icon"/>
+<style type="text/css">
+    body{background:url(/static/myblog/images/bg.jpg) repeat; padding-top:45px;}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="myNav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#my-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="myBrand" class="navbar-brand" href="{% url 'home' %}">Galog</a>
+            <a href="{% url 'home' %}"><img src="/static/myblog/images/logo.png"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="my-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        文章分类 <b class="caret"></b>
+                    </a>
+                    <ul id="myDropdown-menu" class="dropdown-menu">
+                        <li><a href="{% url 'article_list' 'Python' '1' %}">Python</a></li>
+                        <li><a href="{% url 'article_list' 'wxapp' '1' %}">微信小程序</a></li>
+                        <li><a href="{% url 'article_list' 'home' '1' %}">针砭时弊</a></li>
+                        <li><a href="{% url 'article_list' 'mytalk' '1' %}">研究什么生</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'home' %}">首  页</a></li>
+                <li><a href="{% url 'home' %}">关于本站</a></li>
+                <li><a href="{% url 'liuyan' %}">给我留言</a></li>
+            </ul>
+            <div id="myHeart">
+                 <img src="/static/myblog/images/heart.png">
+            </div>
+{% block bodycontent %}
+{% endblock bodycontent %}
+</div>
+<div class="clear"></div>
+<footer>
+<div id="selfFooter" class="container">
+    <a>Copyright©2016-2017  Owner By Chance Gal | 联系我：qq1481239341</a>
+</div>
+</footer>
+<script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() != 0) {
+                $("#toTop").fadeIn();
+            } else {
+                $("#toTop").fadeOut();
+            }
+        });
+        $("body").append("<div id=\"toTop\" class=\"hidden-xs\" style=\"border:1px solid #444;background:#333;color:#fff;text-align:center;padding:10px 13px 7px 13px;position:fixed;bottom:10px;right:10px;cursor:pointer;display:none;font-family:verdana;font-size:22px;\">^</div>");
+        $("#toTop").click(function () {
+            $("body,html").animate({scrollTop: 0}, 800);
+        });
+    });
+</script>
+<div id="toTop" class="hidden-xs" data-toggle="tooltip" title="回到顶部">^</div>
+</body>
+</html>

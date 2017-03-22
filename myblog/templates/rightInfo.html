@@ -1,0 +1,70 @@
+<div id="mySearch">
+        <form class="bs-example bs-example-form" role="form" method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <input name="keyWord" type="text" class="form-control" placeholder="输入关键字搜索文章">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class=" glyphicon glyphicon-search btn-xs"></span></button>
+                </span>
+            </div>
+        </form>
+</div>
+<div id="currentWeather">
+        <form class="bs-example bs-example-form" role="form" method="post" action="{% url 'weather' %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <input name="city" type="text" class="form-control" placeholder="输入城市查看实时空气质量 如：衡水">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class=" glyphicon glyphicon-search btn-xs"></span></button>
+                </span>
+            </div>
+        </form>
+</div>
+<div class="rightSubInfo">
+    <li class="infoHeader"><span class="glyphicon glyphicon-user"></span>    我寝大唱神 | Chance Gal</li>
+    <div id="myHead"><img src="/static/myblog/images/head.jpg" class="img-thumbnail"></div>
+    <div id="myIntro">
+        <br/>
+        <p>中科院声学所在读研究生</p>
+        <br/>
+        <p>不管目的地有多远，先走起来。</p>
+    </div>
+</div>
+<div class="rightSubInfo">
+    <li class="infoHeader"><span class="glyphicon glyphicon-tags"></span>    文以类聚</li>
+    <li><a class="articleType1" href="{% url 'article_list' 'Python' '1' %}">Python</a></li>
+    <li><a class="articleType1" href="{% url 'article_list' 'wxapp' '1' %}">微信小程序</a></li>
+    <li><a class="articleType1" href="{% url 'article_list' 'home' '1' %}">针砭时弊</a></li>
+    <li><a class="articleType1" href="{% url 'article_list' 'mytalk' '1' %}">研究什么生</a></li>
+</div>
+<div class="rightSubInfo">
+    <li class="infoHeader"><span class="glyphicon glyphicon-tree-deciduous"></span>    我的微博</li>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=1&isFans=1&uid=3230751390&verifier=43bfad3c&dpc=1"></iframe>
+</div>
+<div class="rightSubInfo">
+    <li class="infoHeader"><span class="glyphicon glyphicon-fire"></span>    热门文章</li>
+    <ul class="list-group">
+    {% for article in hot_article %}
+        <a class="list-group-item" href="{% url 'article' article.id %}"><span class="badge">{{ article.blog_clicknum }}</span>{{ article.blog_title }}</a>
+    {% endfor %}
+    </ul>
+</div>
+<div class="rightSubInfo">
+    <li class="infoHeader"><span class="glyphicon glyphicon-fire"></span>    最近留言</li>
+    <!-- 多说最新评论 start -->
+    <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="0" data-show-admin="1" data-excerpt-length="70"></div>
+<!-- 多说最新评论 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"galog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- 多说公共JS代码 end -->
+</div>
